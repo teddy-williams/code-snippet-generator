@@ -1,4 +1,4 @@
-// snippets.js
+// snippets.js with syntax highlighting + export feature + search
 
 const snippets = {
   html: {
@@ -51,7 +51,13 @@ const snippets = {
 
     meta: `<meta name="description" content="Free code snippets">`,
 
-    comment: `<!-- This is an HTML comment -->`
+    comment: `<!-- This is an HTML comment -->`,
+
+    iframe: `<iframe src="https://example.com" width="300" height="200"></iframe>`,
+
+    audio: `<audio controls>
+  <source src="sound.mp3" type="audio/mpeg">
+</audio>`
   },
 
   css: {
@@ -98,7 +104,17 @@ const snippets = {
   --main-color: #333;
 }`,
 
-    comment: `/* This is a CSS comment */`
+    comment: `/* This is a CSS comment */`,
+
+    flexbox: `.container {
+  display: flex;
+  gap: 10px;
+}`,
+
+    grid: `.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}`
   },
 
   javascript: {
@@ -136,7 +152,13 @@ items.forEach(item => console.log(item));`,
   }
 }`,
 
-    comment: `// This is a JavaScript comment`
+    comment: `// This is a JavaScript comment`,
+
+    import: `import { useState } from 'react';`,
+
+    export: `export function add(x, y) {
+  return x + y;
+}`
   },
 
   python: {
@@ -146,26 +168,61 @@ items.forEach(item => console.log(item));`,
     return f"Hello, {name}"`,
 
     loop: `for i in range(5):
-    print(i)`,
+    print(i)` ,
 
     condition: `if x > 0:
-    print("Positive")`,
+    print("Positive")` ,
 
-    list: `fruits = ['apple', 'banana', 'cherry']`,
+    list: `fruits = ['apple', 'banana', 'cherry']` ,
 
-    dict: `person = {"name": "John", "age": 30}`,
+    dict: `person = {"name": "John", "age": 30}` ,
 
     classDef: `class Dog:
     def __init__(self, name):
-        self.name = name`,
+        self.name = name` ,
 
-    import: `import math`,
+    import: `import math` ,
 
     exception: `try:
     x = 1 / 0
 except ZeroDivisionError:
-    print("Cannot divide by zero")`,
+    print("Cannot divide by zero")` ,
 
-    comment: `# This is a Python comment`
+    comment: `# This is a Python comment` ,
+
+    lambdaFunc: `square = lambda x: x * x` ,
+
+    listComp: `squares = [x*x for x in range(10)]`
   }
 };
+
+// Function to export snippet as a downloadable file
+function exportSnippet(code, language) {
+  const blob = new Blob([code], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `snippet.${language}`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// Search functionality
+function searchSnippets(term) {
+  const lowerTerm = term.toLowerCase();
+  const results = {};
+  for (const [lang, snippetsByLang] of Object.entries(snippets)) {
+    results[lang] = {};
+    for (const [key, code] of Object.entries(snippetsByLang)) {
+      if (key.toLowerCase().includes(lowerTerm) || code.toLowerCase().includes(lowerTerm)) {
+        results[lang][key] = code;
+      }
+    }
+    if (Object.keys(results[lang]).length === 0) {
+      delete results[lang];
+    }
+  }
+  return results;
+}
+
+// Syntax highlighting is assumed to be handled by Prism.js or Highlight.js in the HTML
