@@ -7,6 +7,8 @@ const snippets = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <pre><code class="language-javascript">const x = 10;</code></pre>
+
   <title>Document</title>
 </head>
 <body>
