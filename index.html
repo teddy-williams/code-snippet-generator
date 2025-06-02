@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Code Snippet Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>💻 Code Snippet Generator</h1>
+    <p>Generate copy-paste ready HTML, CSS, and JS code snippets</p>
+  </header>
+
+  <section>
+    <label for="snippet-type">Choose a snippet type:</label>
+    <select id="snippet-type">
+      <option value="button">HTML Button</option>
+      <option value="form">HTML Form</option>
+      <option value="modal">Modal Pop-Up</option>
+    </select>
+
+    <button onclick="generate()">Generate Snippet</button>
+
+    <h2>📋 Output</h2>
+    <textarea id="output" rows="10" cols="60" readonly></textarea>
+    <button onclick="copyToClipboard()">Copy</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
