@@ -3,7 +3,7 @@
 A simple HTML/JavaScript tool that helps non-developers and junior devs generate reusable UI code snippets easily.
 
 ## 🚀 Features
-- One-click HTML/CSS/JS snippets
+- One-click HTML/CSS/JS/Python/Bash snippets
 - Copy-ready output
 - Fully responsive design
 - Ideal for beginners
