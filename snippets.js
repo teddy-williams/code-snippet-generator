@@ -1,4 +1,4 @@
-// snippets.js with syntax highlighting + export feature + search
+// snippets.js with syntax highlighting + export feature + search + Bash support + PWA readiness
 
 const snippets = {
   html: {
@@ -7,8 +7,6 @@ const snippets = {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <pre><code class="language-javascript">const x = 10;</code></pre>
-
   <title>Document</title>
 </head>
 <body>
@@ -35,27 +33,27 @@ const snippets = {
 
     image: `<img src="image.jpg" alt="A sample image" width="300">`,
 
-    link: `<a href="https://example.com">Visit Example</a>`,
+    link: `<a href="https://example.com">Visit Example</a>` ,
 
     video: `<video controls>
   <source src="movie.mp4" type="video/mp4">
-</video>`,
+</video>` ,
 
     list: `<ul>
   <li>Item 1</li>
   <li>Item 2</li>
-</ul>`,
+</ul>` ,
 
     semantic: `<section>
   <h2>About Us</h2>
   <p>This is a semantic section.</p>
-</section>`,
+</section>` ,
 
-    meta: `<meta name="description" content="Free code snippets">`,
+    meta: `<meta name="description" content="Free code snippets">` ,
 
-    comment: `<!-- This is an HTML comment -->`,
+    comment: `<!-- This is an HTML comment -->` ,
 
-    iframe: `<iframe src="https://example.com" width="300" height="200"></iframe>`,
+    iframe: `<iframe src="https://example.com" width="300" height="200"></iframe>` ,
 
     audio: `<audio controls>
   <source src="sound.mp3" type="audio/mpeg">
@@ -106,12 +104,12 @@ const snippets = {
   --main-color: #333;
 }`,
 
-    comment: `/* This is a CSS comment */`,
+    comment: `/* This is a CSS comment */` ,
 
     flexbox: `.container {
   display: flex;
   gap: 10px;
-}`,
+}` ,
 
     grid: `.grid-container {
   display: grid;
@@ -170,31 +168,57 @@ items.forEach(item => console.log(item));`,
     return f"Hello, {name}"`,
 
     loop: `for i in range(5):
-    print(i)` ,
+    print(i)`,
 
     condition: `if x > 0:
-    print("Positive")` ,
+    print("Positive")`,
 
-    list: `fruits = ['apple', 'banana', 'cherry']` ,
+    list: `fruits = ['apple', 'banana', 'cherry']`,
 
-    dict: `person = {"name": "John", "age": 30}` ,
+    dict: `person = {"name": "John", "age": 30}`,
 
     classDef: `class Dog:
     def __init__(self, name):
-        self.name = name` ,
+        self.name = name`,
 
-    import: `import math` ,
+    import: `import math`,
 
     exception: `try:
     x = 1 / 0
 except ZeroDivisionError:
-    print("Cannot divide by zero")` ,
+    print("Cannot divide by zero")`,
 
-    comment: `# This is a Python comment` ,
+    comment: `# This is a Python comment`,
 
-    lambdaFunc: `square = lambda x: x * x` ,
+    lambdaFunc: `square = lambda x: x * x`,
 
     listComp: `squares = [x*x for x in range(10)]`
+  },
+
+  bash: {
+    list: `ls -la`,
+
+    changeDir: `cd /path/to/directory`,
+
+    update: `sudo apt update && sudo apt upgrade`,
+
+    filePermission: `chmod +x script.sh`,
+
+    createFile: `touch newfile.txt`,
+
+    copyFile: `cp source.txt destination.txt`,
+
+    moveFile: `mv oldname.txt newname.txt`,
+
+    removeFile: `rm filename.txt`,
+
+    checkDisk: `df -h`,
+
+    searchText: `grep 'pattern' filename`,
+
+    echo: `echo "Hello, Bash!"`,
+
+    ping: `ping -c 4 google.com`
   }
 };
 
@@ -226,5 +250,3 @@ function searchSnippets(term) {
   }
   return results;
 }
-
-// Syntax highlighting is assumed to be handled by Prism.js or Highlight.js in the HTML
