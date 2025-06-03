@@ -4,39 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Code Snippet Generator</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- Prism.js for Syntax Highlighting -->
-  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<!-- Prism.js -->
-<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" rel="stylesheet" />
-<!-- Highlight.js -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
-
+  <link href="style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet"/>
 </head>
 <body>
   <header>
-    <h1>🧩 Code Snippet Generator</h1>
-    <p>Select a language and snippet, then generate and export!</p>
+    <h1>🧰 Code Snippet Generator</h1>
+    <p>Pick a language & snippet — Copy with a click!</p>
   </header>
 
-  <main>
-    <div class="controls">
-      <select id="languageSelect">
+  <main class="container">
+    <div class="selectors">
+      <select id="language">
         <option value="html">HTML</option>
         <option value="css">CSS</option>
-        <option value="javascript">JavaScript</option>
+        <option value="js">JavaScript</option>
         <option value="python">Python</option>
         <option value="bash">Bash</option>
       </select>
 
-       <select id="snippet-type">
-        <option value="">Select a snippet</option>
+      <select id="snippet-type">
         <option value="starter">Starter Code</option>
         <option value="form">Form</option>
         <option value="function">Function</option>
@@ -44,74 +31,20 @@
         <option value="button">Button</option>
         <option value="update">Update Command</option>
       </select>
-
-      <button onclick="handleGenerate()">Generate</button>
-      <button onclick="handleExport()">Export</button>
     </div>
 
-    <pre><code id="codeDisplay" class="language-javascript"></code></pre>
+    <button onclick="generateSnippet()">🎯 Generate</button>
+
+    <pre><code id="output" class="language-html"></code></pre>
+    <button onclick="copyToClipboard()">📋 Copy</button>
   </main>
 
+  <footer>
+    <p>© 2025 Mavuso Williams</p>
+  </footer>
+
   <script src="snippets.js"></script>
-  <script>
-    const languageSelect = document.getElementById('languageSelect');
-    const snippetSelect = document.getElementById('snippetSelect');
-    const codeDisplay = document.getElementById('codeDisplay');
-    const searchInput = document.getElementById('searchInput');
-    let currentLanguage = 'javascript';
-
-    function populateSnippets(language) {
-      snippetSelect.innerHTML = '';
-      const options = Object.keys(snippets[language] || {}).map(key => 
-        `<option value="${key}">${key}</option>`
-      ).join('');
-      snippetSelect.innerHTML = options;
-    }
-
-    function handleGenerate() {
-      const lang = languageSelect.value;
-      const key = snippetSelect.value;
-      if (snippets[lang] && snippets[lang][key]) {
-        currentLanguage = lang;
-        codeDisplay.className = `language-${lang}`;
-        codeDisplay.textContent = snippets[lang][key];
-        Prism.highlightElement(codeDisplay);
-      }
-    }
-
-    function handleExport() {
-      const lang = languageSelect.value;
-      const key = snippetSelect.value;
-      if (snippets[lang] && snippets[lang][key]) {
-        exportSnippet(snippets[lang][key], lang);
-      }
-    }
-
-    languageSelect.addEventListener('change', () => {
-      populateSnippets(languageSelect.value);
-    });
-
-    searchInput.addEventListener('input', () => {
-      const searchTerm = searchInput.value;
-      const filtered = searchSnippets(searchTerm);
-      snippetSelect.innerHTML = '';
-      if (filtered[languageSelect.value]) {
-        for (const key of Object.keys(filtered[languageSelect.value])) {
-          snippetSelect.innerHTML += `<option value="${key}">${key}</option>`;
-        }
-      }
-    });
-
-    // Initialize
-    populateSnippets(languageSelect.value);
-  </script>
-  <!-- Prism.js -->
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-
-<!-- Highlight.js -->
-<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
-<script>
-  hljs.highlightAll(); // initialize highlight.js
-</script>
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
 </body>
 </html>
